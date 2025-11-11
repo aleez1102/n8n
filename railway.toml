@@ -1,0 +1,21 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm install && npm run build"
+
+[deploy]
+startCommand = "n8n start"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+healthcheckPath = "/"
+healthcheckTimeout = 60
+numReplicas = 1
+sleep = false
+
+[env]
+N8N_PORT = "5678"
+N8N_PROTOCOL = "http"
+N8N_HOST = "0.0.0.0"
+WEBHOOK_URL = "https://${{RAILWAY_STATIC_URL}}/"
+GENERIC_TIMEZONE = "Asia/Kolkata"
+DB_TYPE = "postgresdb"
+EXECUTIONS_MODE = "queue"
